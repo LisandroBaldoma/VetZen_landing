@@ -1,81 +1,94 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { CheckCircle, ArrowRight, Check, Clock, Phone } from 'lucide-react'
+import { treatmentService, type Treatment as TreatmentAPI } from '@/services/api'
+import { getIcon, getGradient } from '@/lib/iconMapping'
 
-const treatments = [
-  {
-    id: '1',
-    title: 'Fisioterapia Post-Operatoria',
-    description: 'Rehabilitación especializada después de cirugías ortopédicas para una recuperación óptima.',
-    icon: CheckCircle,
-    benefits: ['Recuperación acelerada', 'Reducción del dolor', 'Prevención de complicaciones'],
-    duration: '45-60 min',
-    gradient: 'from-vet-green to-vet-green-light',
-  },
-  {
-    id: '2',
-    title: 'Rehabilitación Neurológica',
-    description: 'Tratamientos para mascotas con problemas neurológicos que afectan su movilidad.',
-    icon: ({ className }: { className?: string }) => (
-      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-      </svg>
-    ),
-    benefits: ['Mejora de la coordinación', 'Estimulación neural', 'Recuperación funcional'],
-    duration: '60 min',
-    gradient: 'from-vet-blue to-vet-blue-light',
-  },
-  {
-    id: '3',
-    title: 'Hidroterapia',
-    description: 'Ejercicios terapéuticos en agua que permiten movimiento sin impacto articular.',
-    icon: ({ className }: { className?: string }) => (
-      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h2.34M20 14.66a7 7 0 01-14 0M20 14.66A3 3 0 0117 11a3 3 0 01-3 3 3 3 0 01-3-3 3 3 0 01-3 3 3 3 0 01-3-3"/>
-      </svg>
-    ),
-    benefits: ['Bajo impacto', 'Fortalecimiento muscular', 'Mejora cardiovascular'],
-    duration: '30-45 min',
-    gradient: 'from-cyan-500 to-blue-500',
-  },
-  {
-    id: '4',
-    title: 'Kinesiología Animal',
-    description: 'Terapia manual y ejercicios terapéuticos para mejorar la funcionalidad muscular.',
-    icon: ({ className }: { className?: string }) => (
-      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11"/>
-      </svg>
-    ),
-    benefits: ['Masaje terapéutico', 'Movilización articular', 'Estiramientos'],
-    duration: '45 min',
-    gradient: 'from-vet-yellow to-orange-400',
-  },
-  {
-    id: '5',
-    title: 'Mascotas Gerontes',
-    description: 'Cuidados especiales para mascotas mayores con artritis, artrosis o movilidad reducida.',
-    icon: Clock,
-    benefits: ['Alivio del dolor', 'Mayor movilidad', 'Calidad de vida'],
-    duration: '30-45 min',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    id: '6',
-    title: 'Terapia Láser',
-    description: 'Tratamiento con láser de baja intensidad para reducir inflamación y acelerar la curación.',
-    icon: ({ className }: { className?: string }) => (
-      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-      </svg>
-    ),
-    benefits: ['Antiinflamatorio', 'Analgésico', 'Regeneración tisular'],
-    duration: '15-30 min',
-    gradient: 'from-red-500 to-rose-500',
-  },
-]
+// Tipo extendido para el frontend
+interface TreatmentUI extends TreatmentAPI {
+  icon: React.ComponentType<{ className?: string }>
+  gradient: string
+  benefits: string[]
+}
 
 export default function TreatmentsSection() {
+  const [treatments, setTreatments] = useState<TreatmentUI[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  
+
+  useEffect(() => {
+    const fetchTreatments = async () => {
+      try {
+        setLoading(true)
+        console.log('Cargando tratamientos...') // Debug: Indicar inicio de carga
+        const data = await treatmentService.getAll()
+        console.log('Tratamientos obtenidos:', JSON.stringify(data, null, 2)) // Debug: Verificar datos recibidos
+        // Transformar datos del backend al formato del frontend
+        const transformedData: TreatmentUI[] = data
+          .filter((t: TreatmentAPI) => t.is_active)
+          .map((treatment: TreatmentAPI, index: number) => ({
+            ...treatment,
+            icon: getIcon(treatment.icon_name),
+            gradient: getGradient(treatment.id, index),
+            benefits: treatment.features || [],
+          }))
+        console.log('Tratamientos transformados:', transformedData) // Debug: Verificar datos transformados
+        setTreatments(transformedData)
+        setError(null)
+      } catch (err) {
+        console.error('Error loading treatments:', err)
+        setError('No se pudieron cargar los tratamientos')
+        // Datos de fallback si falla la API
+        setTreatments([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTreatments()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="h-8 w-64 bg-gray-200 rounded mx-auto mb-6 animate-pulse" />
+            <div className="h-12 w-96 bg-gray-300 rounded mx-auto mb-4 animate-pulse" />
+            <div className="h-6 w-full max-w-2xl bg-gray-200 rounded mx-auto animate-pulse" />
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg">
+                <div className="h-48 bg-gray-200 animate-pulse" />
+                <div className="p-6 space-y-4">
+                  <div className="h-6 bg-gray-300 rounded animate-pulse" />
+                  <div className="h-4 bg-gray-200 rounded animate-pulse" />
+                  <div className="h-4 bg-gray-200 rounded animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error && treatments.length === 0) {
+    return (
+      <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="text-red-500 mb-4">⚠️ {error}</div>
+            <p className="text-vet-gray-light">Por favor, intenta recargar la página.</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
   return (
     <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream relative overflow-hidden">
       {/* Background decorations */}

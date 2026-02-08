@@ -15,7 +15,7 @@ Este documento explica cómo integrar el backend Laravel con el frontend React d
 - [ ] API endpoints implementados
 - [ ] CORS configurado
 - [ ] Laravel Sanctum instalado
-- [ ] Server corriendo en `http://localhost:8000`
+- [ ] Server corriendo en `http://localhost:5173`
 
 ### Frontend (React)
 - [ ] Servicio API creado (`src/services/api.ts`)
