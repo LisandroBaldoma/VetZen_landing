@@ -1,0 +1,126 @@
+{
+  "icons": {
+    "valid_names": [
+      "Heart",
+      "Activity",
+      "Zap",
+      "Waves",
+      "Star",
+      "Shield",
+      "Sparkles",
+      "Droplets",
+      "Wind",
+      "Smile"
+    ],
+    "descriptions": {
+      "Heart": "Cuidado, amor, cardiología",
+      "Activity": "Movimiento, actividad física, signos vitales",
+      "Zap": "Energía, estimulación, terapia eléctrica",
+      "Waves": "Ondas, hidroterapia, terapia acuática",
+      "Star": "Calidad, excelencia, destacado",
+      "Shield": "Protección, prevención, fortalecimiento",
+      "Sparkles": "Recuperación, mejoría, brillo",
+      "Droplets": "Hidroterapia, fluidez, agua",
+      "Wind": "Respiración, movimiento suave, aire",
+      "Smile": "Bienestar, felicidad, confort"
+    }
+  },
+  "gradients": {
+    "valid_names": [
+      "orange",
+      "blue",
+      "emerald",
+      "purple",
+      "pink",
+      "cyan",
+      "amber",
+      "teal",
+      "red",
+      "indigo"
+    ],
+    "descriptions": {
+      "orange": "Energía, vitalidad",
+      "blue": "Calma, confianza",
+      "emerald": "Salud, naturaleza",
+      "purple": "Especializado, premium",
+      "pink": "Cuidado, delicadeza",
+      "cyan": "Agua, hidroterapia",
+      "amber": "Calidez, confort",
+      "teal": "Equilibrio, armonía",
+      "red": "Vitalidad, fuerza",
+      "indigo": "Profesionalismo, tecnología"
+    },
+    "tailwind_classes": {
+      "orange": "from-orange-400 to-orange-600",
+      "blue": "from-blue-400 to-blue-600",
+      "emerald": "from-emerald-400 to-emerald-600",
+      "purple": "from-purple-400 to-purple-600",
+      "pink": "from-pink-400 to-pink-600",
+      "cyan": "from-cyan-400 to-cyan-600",
+      "amber": "from-amber-400 to-amber-600",
+      "teal": "from-teal-400 to-teal-600",
+      "red": "from-red-400 to-red-600",
+      "indigo": "from-indigo-400 to-indigo-600"
+    }
+  },
+  "recommended_combinations": [
+    {
+      "treatment_type": "Fisioterapia",
+      "icon": "Heart",
+      "gradient": "orange"
+    },
+    {
+      "treatment_type": "Rehabilitación Neurológica",
+      "icon": "Activity",
+      "gradient": "purple"
+    },
+    {
+      "treatment_type": "Hidroterapia",
+      "icon": "Droplets",
+      "gradient": "cyan"
+    },
+    {
+      "treatment_type": "Terapia Láser",
+      "icon": "Zap",
+      "gradient": "red"
+    },
+    {
+      "treatment_type": "Masaje Terapéutico",
+      "icon": "Smile",
+      "gradient": "pink"
+    },
+    {
+      "treatment_type": "Acupuntura",
+      "icon": "Star",
+      "gradient": "amber"
+    },
+    {
+      "treatment_type": "Quiropráctica",
+      "icon": "Shield",
+      "gradient": "teal"
+    },
+    {
+      "treatment_type": "Electroestimulación",
+      "icon": "Zap",
+      "gradient": "indigo"
+    },
+    {
+      "treatment_type": "Terapia Respiratoria",
+      "icon": "Wind",
+      "gradient": "blue"
+    },
+    {
+      "treatment_type": "Recuperación Post-Operatoria",
+      "icon": "Sparkles",
+      "gradient": "emerald"
+    }
+  ],
+  "validation_examples": {
+    "laravel": {
+      "icon_rule": "Rule::in(['Heart', 'Activity', 'Zap', 'Waves', 'Star', 'Shield', 'Sparkles', 'Droplets', 'Wind', 'Smile'])",
+      "gradient_rule": "Rule::in(['orange', 'blue', 'emerald', 'purple', 'pink', 'cyan', 'amber', 'teal', 'red', 'indigo'])"
+    }
+  },
+  "version": "1.0.0",
+  "last_updated": "2026-02-09"
+}
