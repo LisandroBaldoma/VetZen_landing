@@ -53,7 +53,6 @@ export const gradientMap: Record<string, string> = {
 
 // Función helper para obtener el icono
 export const getIcon = (iconName: string) => {
-    console.log('Obteniendo icono para:', iconName) // Debug: Verificar nombre del icono
   return iconMap[iconName] || iconMap['check-circle']
 }
 
