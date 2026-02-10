@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import { CheckCircle, ArrowRight, Check, Clock, Phone } from 'lucide-react'
 import { treatmentService, type Treatment as TreatmentAPI } from '@/services/api'
-import { getIcon, getGradient } from '@/lib/iconMapping'
+import { getIconComponent, getGradientClasses, TREATMENT_OPTIONS } from '@/constants/treatmentOptions'
 
 // Tipo extendido para el frontend
-interface TreatmentUI extends TreatmentAPI {
+interface TreatmentUI extends Omit<TreatmentAPI, 'gradient'> {
   icon: React.ComponentType<{ className?: string }>
   gradient: string
   benefits: string[]
@@ -23,19 +23,37 @@ export default function TreatmentsSection() {
     const fetchTreatments = async () => {
       try {
         setLoading(true)
-        console.log('Cargando tratamientos...') // Debug: Indicar inicio de carga
+        console.log('📥 [TreatmentsSection] Cargando tratamientos...')
         const data = await treatmentService.getAll()
-        console.log('Tratamientos obtenidos:', JSON.stringify(data, null, 2)) // Debug: Verificar datos recibidos
+        console.log('📥 [TreatmentsSection] Datos del backend:', data)
+        
         // Transformar datos del backend al formato del frontend
         const transformedData: TreatmentUI[] = data
           .filter((t: TreatmentAPI) => t.is_active)
-          .map((treatment: TreatmentAPI, index: number) => ({
-            ...treatment,
-            icon: getIcon(treatment.icon_name),
-            gradient: getGradient(treatment.id, index),
-            benefits: treatment.features || [],
-          }))
-        console.log('Tratamientos transformados:', transformedData) // Debug: Verificar datos transformados
+          .map((treatment: TreatmentAPI, index: number) => {
+            console.log(`🔄 [Transform] Procesando "${treatment.title}":`, {
+              icon_name: treatment.icon_name,
+              gradient: (treatment as any).gradient,
+              benefits: (treatment as any).benefits || treatment.features || [],
+            })
+            
+            const transformed = {
+              ...treatment,
+              icon: getIconComponent(treatment.icon_name),
+              gradient: getGradientClasses((treatment as any).gradient || 'emerald'),
+              benefits: (treatment as any).benefits || treatment.features || [],
+            }
+            
+            console.log(`✅ [Transform] Resultado:`, {
+              icon: transformed.icon.name || 'Component',
+              gradient: transformed.gradient,
+              benefits: transformed.benefits.length,
+            })
+            
+            return transformed
+          })
+        
+        console.log('✅ [TreatmentsSection] Tratamientos transformados:', transformedData.length)
         setTreatments(transformedData)
         setError(null)
       } catch (err) {
