@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, ClipboardList, ArrowRight, CheckCircle, FlaskConical, Dog, PawPrint } from 'lucide-react'
+import { Calendar, ClipboardList, ArrowRight, FlaskConical, Dog, PawPrint } from 'lucide-react'
 
 const stats = [
   { value: '10+', label: 'Años de experiencia' },

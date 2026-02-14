@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Phone, Mail, Clock, ExternalLink, AlertTriangle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react'
 
 const WhatsAppIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

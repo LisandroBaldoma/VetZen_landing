@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, MapPin, Phone, Mail, Clock, Facebook, Instagram } from 'lucide-react'
+import { MapPin, Phone, Mail, Instagram } from 'lucide-react'
 
 const quickLinks = [
   { label: 'Inicio', href: '#inicio' },
