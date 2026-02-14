@@ -1,76 +1,99 @@
 'use client'
 
-import { CheckCircle, ArrowRight, Check, Clock, Phone, Activity, Bone, Sparkles, Flower2 } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { CheckCircle, ArrowRight, Check, Clock, Phone } from 'lucide-react'
+import { treatmentService, type Treatment as TreatmentAPI } from '@/services/api'
+import { getIconComponent, getGradientClasses, TREATMENT_OPTIONS } from '@/constants/treatmentOptions'
 
-const treatments = [
-  {
-    id: '1',
-    title: 'Fisioterapia Veterinaria',
-    description:
-      'Tratamientos físicos orientados a recuperar la movilidad, reducir el dolor y fortalecer la musculatura en pequeños animales.',
-    icon: Bone,
-    benefits: [
-      'Fortalecimiento muscular',
-      'Reducción del dolor',
-      'Recuperación postquirúrgica',
-    ],
-    duration: '45 min',
-    gradient: 'from-vet-green to-vet-green-light',
-  },
-
-  {
-    id: '2',
-    title: 'Rehabilitación Integral',
-    description:
-      'Programas personalizados para recuperar la funcionalidad luego de cirugías, lesiones o enfermedades neurológicas.',
-    icon: Activity,
-    benefits: [
-      'Reeducación motora',
-      'Mejora del equilibrio',
-      'Plan terapéutico personalizado',
-    ],
-    duration: '60 min',
-    gradient: 'from-vet-blue to-vet-blue-light',
-  },
-
-  {
-    id: '3',
-    title: 'Acupuntura Veterinaria',
-    description:
-      'Terapia complementaria que estimula puntos específicos del cuerpo para aliviar el dolor y mejorar funciones orgánicas.',
-    icon: Sparkles,
-    benefits: [
-      'Alivio del dolor crónico',
-      'Mejora neurológica',
-      'Estimulación del sistema inmune',
-    ],
-    duration: '40 min',
-    gradient: 'from-vet-green to-vet-green-light',
-  },
-
-  {
-    id: '4',
-    title: 'Terapia Floral',
-    description:
-      'Tratamiento natural orientado al equilibrio emocional y conductual de las mascotas.',
-    icon: Flower2,
-    benefits: [
-      'Reducción del estrés',
-      'Apoyo en problemas conductuales',
-      'Equilibrio emocional',
-    ],
-    duration: '30 min',
-    gradient: 'from-vet-blue to-vet-blue-light',
-  },
-]
+// Tipo extendido para el frontend
+interface TreatmentUI extends Omit<TreatmentAPI, 'gradient'> {
+  icon: React.ComponentType<{ className?: string }>
+  gradient: string
+  benefits: string[]
+}
 
 export default function TreatmentsSection() {
+  const [treatments, setTreatments] = useState<TreatmentUI[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  
+
+  useEffect(() => {
+    const fetchTreatments = async () => {
+      try {
+        setLoading(true)
+        const data = await treatmentService.getAll()
+        
+        // Transformar datos del backend al formato del frontend
+        const transformedData: TreatmentUI[] = data
+          .filter((t: TreatmentAPI) => t.is_active)
+          .map((treatment: TreatmentAPI, index: number) => ({
+            ...treatment,
+            icon: getIconComponent(treatment.icon_name),
+            gradient: getGradientClasses((treatment as any).gradient || 'emerald'),
+            benefits: (treatment as any).benefits || treatment.features || [],
+          }))
+        
+        setTreatments(transformedData)
+        setError(null)
+      } catch (err) {
+        console.error('Error loading treatments:', err)
+        setError('No se pudieron cargar los tratamientos')
+        // Datos de fallback si falla la API
+        setTreatments([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTreatments()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="h-8 w-64 bg-gray-200 rounded mx-auto mb-6 animate-pulse" />
+            <div className="h-12 w-96 bg-gray-300 rounded mx-auto mb-4 animate-pulse" />
+            <div className="h-6 w-full max-w-2xl bg-gray-200 rounded mx-auto animate-pulse" />
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-lg">
+                <div className="h-48 bg-gray-200 animate-pulse" />
+                <div className="p-6 space-y-4">
+                  <div className="h-6 bg-gray-300 rounded animate-pulse" />
+                  <div className="h-4 bg-gray-200 rounded animate-pulse" />
+                  <div className="h-4 bg-gray-200 rounded animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error && treatments.length === 0) {
+    return (
+      <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="text-red-500 mb-4">⚠️ {error}</div>
+            <p className="text-vet-gray-light">Por favor, intenta recargar la página.</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
   return (
     <section id="tratamientos" className="py-20 lg:py-32 bg-vet-cream relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-vet-green/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-vet-blue/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-vet-green/5 rounded-full blur-3xl"/>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-vet-blue/5 rounded-full blur-3xl"/>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -91,15 +114,15 @@ export default function TreatmentsSection() {
           {treatments.map((treatment) => {
             const Icon = treatment.icon
             return (
-              <div
+              <div 
                 key={treatment.id}
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${treatment.gradient} opacity-10 group-hover:opacity-20 transition-opacity`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${treatment.gradient} opacity-10 group-hover:opacity-20 transition-opacity`}/>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${treatment.gradient} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500`}>
-                      <Icon className="w-12 h-12 text-white" />
+                      <Icon className="w-12 h-12 text-white"/>
                     </div>
                   </div>
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-vet-gray shadow-sm flex items-center gap-1">
@@ -118,7 +141,7 @@ export default function TreatmentsSection() {
 
                   <ul className="space-y-2 mb-6">
                     {treatment.benefits.map((benefit) => (
-                      <li
+                      <li 
                         key={benefit}
                         className="flex items-center gap-2 text-sm text-vet-gray"
                       >
@@ -128,7 +151,7 @@ export default function TreatmentsSection() {
                     ))}
                   </ul>
 
-                  <a
+                  <a 
                     href="#turnos"
                     className={`inline-flex items-center gap-2 w-full justify-center py-3 rounded-xl font-medium text-sm transition-all bg-gradient-to-r ${treatment.gradient} text-white hover:shadow-lg hover:shadow-vet-green/25`}
                   >
@@ -152,14 +175,14 @@ export default function TreatmentsSection() {
                 Agenda una consulta de evaluación gratuita donde nuestros especialistas determinarán el mejor plan de tratamiento para tu compañero peludo.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a
+                <a 
                   href="#turnos"
                   className="inline-flex items-center gap-2 bg-vet-green text-white px-6 py-3 rounded-full font-medium hover:bg-vet-green-dark transition-colors"
                 >
                   <CheckCircle className="w-5 h-5" />
                   Evaluación Gratuita
                 </a>
-                <a
+                <a 
                   href="#contacto"
                   className="inline-flex items-center gap-2 text-vet-green font-medium hover:underline"
                 >
