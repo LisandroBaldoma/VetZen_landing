@@ -1,4 +1,4 @@
-# Copilot Instructions - VetFisio Landing Page
+# Copilot Instructions - VetZen Landing Page
 
 ## Project Architecture
 

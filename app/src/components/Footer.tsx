@@ -12,11 +12,10 @@ const quickLinks = [
 ]
 
 const treatments = [
-  'Fisioterapia Post-Operatoria',
-  'Rehabilitación Neurológica',
-  'Hidroterapia',
-  'Kinesiología Animal',
-  'Mascotas Gerontes',
+  'Fisiatria',
+  'Acupuntura',
+  'Fisioterapia',
+  'Terapia Floral',
 ]
 
 const WhatsAppIcon = () => (
@@ -37,25 +36,26 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-vet-green to-vet-blue rounded-xl flex items-center justify-center shadow-lg">
+                <img src="/logo.png" alt="VetZen Logo" style={{ width: '58px', height: '58px' }} />
+                {/* <div className="w-12 h-12 bg-gradient-to-br from-vet-green to-vet-blue rounded-xl flex items-center justify-center shadow-lg">
                   <Heart className="w-7 h-7 text-white" />
-                </div>
+                </div> */}
                 <div>
-                  <span className="font-display font-bold text-xl">VetFisio</span>
-                  <span className="block text-xs text-white/60">Fisioterapia Animal</span>
+                  <span className="font-display font-bold text-xl">VetZen</span>
+                  <span className="block text-xs text-white/60">Terapias Complementarias</span>
                 </div>
               </div>
               <p className="text-white/70 text-sm leading-relaxed mb-6">
                 Especialistas en fisioterapia y rehabilitación animal. Devolvemos la movilidad y calidad de vida a tus mascotas.
               </p>
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-vet-green transition-colors">
+                {/* <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-vet-green transition-colors">
                   <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-vet-green transition-colors">
+                </a> */}
+                <a href="https://www.instagram.com/vet_fisio_rosario/" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-vet-green transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://wa.me/541145678900" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-green-500 transition-colors">
+                <a href="https://wa.me/543412500570" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-green-500 transition-colors">
                   <WhatsAppIcon />
                 </a>
               </div>
@@ -95,20 +95,20 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-vet-green mt-0.5 flex-shrink-0" />
-                  <span className="text-white/70 text-sm">Av. Libertador 1234, Palermo, CABA</span>
+                  <span className="text-white/70 text-sm">Mitre 1596, Rosario, Santa Fe</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-vet-green flex-shrink-0" />
-                  <span className="text-white/70 text-sm">+54 11 4567-8900</span>
+                  <span className="text-white/70 text-sm">+54 3412 500570</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-vet-green flex-shrink-0" />
-                  <span className="text-white/70 text-sm">info@vetfisio.com</span>
+                  <span className="text-white/70 text-sm">info@vetZen.com</span>
                 </li>
-                <li className="flex items-center gap-3">
+                {/* <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-vet-green flex-shrink-0" />
                   <span className="text-white/70 text-sm">Lun - Vie: 9:00 - 18:00</span>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function Footer() {
         <div className="border-t border-white/10 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-white/50 text-sm text-center md:text-left">
-              © {currentYear} VetFisio. Todos los derechos reservadoaaaaaaaaas.
+              © {currentYear} VetZen. Todos los derechos reservadoaaaaaaaaas.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">Política de Privacidad</a>

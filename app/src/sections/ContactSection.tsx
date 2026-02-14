@@ -24,7 +24,7 @@ export default function ContactSection() {
             <span className="text-vet-green"> ayudarte</span>
           </h2>
           <p className="text-lg text-vet-gray-light leading-relaxed">
-            Visítanos en nuestra clínica, contáctanos por teléfono o escríbenos por WhatsApp. Estamos listos para atender a tu mascota.
+            Escríbenos por WhatsApp. Estamos listos para atender a tu mascota y brindarte toda la información que necesites sobre nuestros tratamientos y servicios.
           </p>
         </div>
 
@@ -40,11 +40,10 @@ export default function ContactSection() {
                 <div>
                   <h4 className="font-display text-lg font-bold text-vet-gray group-hover:text-white mb-2 transition-colors">Dirección</h4>
                   <p className="text-vet-gray-light group-hover:text-white/80 transition-colors mb-2">
-                    Av. Libertador 1234, Palermo<br/>
-                    CABA, Buenos Aires, Argentina
+                    Mitre 1596, Rosario, Santa Fe, Argentina
                   </p>
                   <a 
-                    href="https://maps.google.com/?q=Av.+Libertador+1234+Palermo+CABA"
+                    href="https://maps.app.goo.gl/LQkVYeGRqcMNwXjK9"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-vet-green group-hover:text-white text-sm font-medium transition-colors"
@@ -66,14 +65,14 @@ export default function ContactSection() {
                   <h4 className="font-display text-lg font-bold text-vet-gray group-hover:text-white mb-2 transition-colors">Teléfono & WhatsApp</h4>
                   <div className="space-y-2">
                     <a 
-                      href="tel:+541145678900"
+                      href="tel:+543412500570"
                       className="flex items-center gap-2 text-vet-gray-light group-hover:text-white/80 transition-colors"
                     >
                       <Phone className="w-4 h-4" />
-                      +54 11 4567-8900
+                      +54 3412 500570
                     </a>
                     <a 
-                      href="https://wa.me/541145678900"
+                      href="https://wa.me/543412500570"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full text-sm hover:bg-green-600 transition-colors"
@@ -95,10 +94,10 @@ export default function ContactSection() {
                 <div>
                   <h4 className="font-display text-lg font-bold text-vet-gray group-hover:text-white mb-2 transition-colors">Email</h4>
                   <a 
-                    href="mailto:info@vetfisio.com"
+                    href="mailto:info@vetzen.com"
                     className="text-vet-gray-light group-hover:text-white/80 transition-colors"
                   >
-                    info@vetfisio.com
+                    info@vetzen.com
                   </a>
                 </div>
               </div>
@@ -129,13 +128,13 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </div>         
 
           {/* Map */}
           <div className="bg-vet-cream rounded-3xl p-4 lg:p-6 h-full min-h-[400px] lg:min-h-0">
             <div className="bg-white rounded-2xl overflow-hidden h-full shadow-inner">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016887889514!2d-58.38414532346179!3d-34.60373887295417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacf425a4a9b%3A0x5e7c5b0a4c6c8c8c!2sAv.%20Libertador%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1704067200000!5m2!1ses!2sar"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3347.8201799249573!2d-60.64474222530999!3d-32.95575667234702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab0fc159ad07%3A0xb0c42f0641c1b99e!2sMitre%201596%2C%20S2000CPH%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1771097439495!5m2!1ses!2sar"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '400px' }}
@@ -149,7 +148,7 @@ export default function ContactSection() {
         </div>
 
         {/* Emergency Banner */}
-        <div className="mt-12 bg-gradient-to-r from-red-500 to-red-600 rounded-3xl p-6 lg:p-8 text-white text-center">
+        {/* <div className="mt-12 bg-gradient-to-r from-red-500 to-red-600 rounded-3xl p-6 lg:p-8 text-white text-center">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-8">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
@@ -161,14 +160,14 @@ export default function ContactSection() {
               </div>
             </div>
             <a 
-              href="tel:+541145678900"
+              href="tel:+54 3412 5005701145678900"
               className="inline-flex items-center gap-2 bg-white text-red-500 px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-colors"
             >
               <Phone className="w-5 h-5" />
               Llamar ahora
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

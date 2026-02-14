@@ -5,7 +5,7 @@ import { Clock, FlaskConical, Heart } from 'lucide-react'
 const values = [
   {
     title: 'Experiencia',
-    description: 'Más de 15 años dedicados exclusivamente a la fisioterapia y rehabilitación animal.',
+    description: 'Más de 10 años dedicados exclusivamente a la fisioterapia y rehabilitación animal.',
     icon: Clock,
   },
   {
@@ -22,29 +22,31 @@ const values = [
 
 const team = [
   {
-    name: 'Dra. María González',
-    role: 'Directora Médica',
-    description: 'Veterinaria especialista en fisioterapia animal con 15 años de experiencia.',
+    name: 'M.V Evangelina Baldoma',
+    role: 'Médica Veterinaria Especialista en Fisioterapia y Rehabilitación',
+    description: 'Especializada en fisioterapia y rehabilitación de pequeños animales, enfocada en la recuperación funcional, fortalecimiento muscular y manejo del dolor. Diseña planes terapéuticos personalizados para mejorar la movilidad y acelerar la recuperación postquirúrgica o postraumática.',
     specialties: ['Fisioterapia', 'Rehabilitación'],
-  },
+    },
   {
-    name: 'Dr. Carlos Rodríguez',
-    role: 'Kinesiólogo',
-    description: 'Especialista en rehabilitación neurológica y ortopédica de pequeños animales.',
-    specialties: ['Neurología', 'Ortopedia'],
+    name: 'M.V Jaqueline Marelli',
+    role: 'Médica Veterinaria Especialista en Terapias Integrativas',
+    description: 'Profesional especializada en acupuntura, fisioterapia y terapia floral aplicada a pequeños animales. Trabaja en el tratamiento del dolor, la rehabilitación física y el equilibrio emocional, abordando cada caso de manera integral y personalizada para mejorar la calidad de vida de sus pacientes.',
+    specialties: ['Acupuntura', 'Fisioterapia', 'Terapia Floral'],
   },
-  {
-    name: 'Lic. Ana Martínez',
-    role: 'Terapeuta Acuática',
-    description: 'Experta en hidroterapia y ejercicios terapéuticos en agua.',
-    specialties: ['Hidroterapia', 'Ejercicio'],
-  },
-  {
-    name: 'Dr. Pedro Sánchez',
-    role: 'Cirujano Ortopédico',
-    description: 'Cirujano especializado en procedimientos ortopédicos y post-operatorios.',
-    specialties: ['Cirugía', 'Traumatología'],
-  },
+
+  
+  // {
+  //   name: 'Lic. Ana Martínez',
+  //   role: 'Terapeuta Acuática',
+  //   description: 'Experta en hidroterapia y ejercicios terapéuticos en agua.',
+  //   specialties: ['Hidroterapia', 'Ejercicio'],
+  // },
+  // {
+  //   name: 'Dr. Pedro Sánchez',
+  //   role: 'Cirujano Ortopédico',
+  //   description: 'Cirujano especializado en procedimientos ortopédicos y post-operatorios.',
+  //   specialties: ['Cirugía', 'Traumatología'],
+  // },
 ]
 
 export default function AboutSection() {
@@ -102,7 +104,7 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {team.map((member, index) => (
               <div 
                 key={member.name}

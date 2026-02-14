@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Calendar, Heart } from 'lucide-react'
+import { Menu, X, Calendar } from 'lucide-react'
 
 const navItems = [
   { label: 'Inicio', href: '#inicio' },
@@ -32,14 +32,14 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+           
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-vet-green to-vet-blue rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <Heart className="w-6 h-6 text-white" />
-            </div>
+          <a href="#" className="flex items-center gap-3 group hover:opacity-80 transition-opacity">
+            <img src="/logo.png" alt="VetZen logo" className="w-10 h-10 object-contain" />
+            
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg leading-tight text-vet-green">VetFisio</span>
-              <span className="text-xs text-vet-gray-light">Fisioterapia Animal</span>
+              <span className="font-display font-bold text-lg leading-tight text-vet-green">VetZen</span>
+              <span className="text-xs text-vet-gray-light">Terapias complemtentarias</span>
             </div>
           </a>
 

@@ -66,10 +66,10 @@ module.exports = {
         },
         // Colores personalizados para veterinaria
         vet: {
-          green: '#4A9B8E',
-          'green-light': '#6FB5A8',
-          blue: '#5FA8D3',
-          'blue-light': '#8BC4E0',
+          green: '#7AAC4A',
+          'green-light': '#BFC668',
+          blue: '#E38140',
+          'blue-light': '#F0CBA4',
           cream: '#FFF8F0',
           yellow: '#F4D35E',
           gray: '#2C3E50',

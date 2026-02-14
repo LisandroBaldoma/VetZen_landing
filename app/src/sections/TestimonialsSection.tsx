@@ -9,7 +9,7 @@ const testimonials = [
     petName: 'Max',
     petType: 'Golden Retriever',
     rating: 5,
-    comment: 'Después de la cirugía de cadera de Max, el equipo de VetFisio hizo un trabajo increíble. En solo 3 meses volvió a correr como antes. El trato fue excelente y siempre estuvieron disponibles para nuestras consultas.',
+    comment: 'Después de la cirugía de cadera de Max, el equipo de VetZen hizo un trabajo increíble. En solo 3 meses volvió a correr como antes. El trato fue excelente y siempre estuvieron disponibles para nuestras consultas.',
     date: '2024-01-15',
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
     petName: 'Luna',
     petType: 'Labrador',
     rating: 5,
-    comment: 'Luna tenía problemas de movilidad por su edad. La hidroterapia cambió su vida completamente. Ahora puede caminar mucho mejor y parece más feliz. ¡Recomiendo VetFisio al 100%!',
+    comment: 'Luna tenía problemas de movilidad por su edad. La hidroterapia cambió su vida completamente. Ahora puede caminar mucho mejor y parece más feliz. ¡Recomiendo VetZen al 100%!',
     date: '2024-01-10',
   },
   {
